@@ -1,3 +1,7 @@
+package main;
+
+import application.Application;
+
 import java.util.Locale;
 import java.util.Scanner;
 /*
@@ -14,28 +18,29 @@ public class BoardingSchool {
         Locale.setDefault(Locale.US);
         Scanner scanner = new Scanner(System.in);
 
-        int rooms;
+        String name;
+        String email;
+        int room, rooms;
 
         System.out.print("How many rooms will be rented? ");
         rooms = scanner.nextInt();
 
-        int[] room = new int[10];
-        String[] name = new String[10];
-        String[] email = new String[10];
-        for (int i = 0; i < rooms; i++) {
-            System.out.printf("Rent #%d:%n", i + 1);
+        Application[] vector = new Application[10];
+        for (int i = 1; i <= rooms; i++) {
+            System.out.printf("Rent #%d:%n", i);
             scanner.nextLine();
             System.out.print("Name: ");
-            name[i] = scanner.nextLine();
+            name = scanner.nextLine();
             System.out.print("Email: ");
-            email[i] = scanner.next();
+            email = scanner.next();
             System.out.print("Room: ");
-            room[i] = scanner.nextInt();
+            room = scanner.nextInt();
+            vector[room] = new Application(name, email);
         }
-        System.out.println("Busy rooms: ");
-        for (int i = 0; i < room.length; i++) {
-            if (room[i] != 0){
-                System.out.printf("%d: %s, %s%n", room[i], name[i], email[i]);
+        System.out.printf("%nBusy rooms:%n");
+        for (int i = 0; i < vector.length; i++) {
+            if (vector[i] != null){
+                System.out.printf("%d: %s%n", i, vector[i]);
             }
         }
     }
